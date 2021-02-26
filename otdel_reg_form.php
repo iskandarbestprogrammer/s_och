@@ -17,7 +17,7 @@ require 'menu.php';
   border: 3px solid green;
   padding: 10px;" >
   <form action="org_reg.php" method="post">
-<h1>Регистрация организации</h1> 
+<h1>Регистрация организаци</h1> 
 <label>Название организации</label><br>
 <input class="form-control" type="text" name="org_name">
 <br>
