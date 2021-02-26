@@ -5,7 +5,8 @@ if(count($_POST)>0) {
 mysqli_query($conn,"UPDATE org set id_org='" . $_POST['id_org'] . "', org='" . $_POST['org'] . "', tel='" . $_POST['tel'] . "', address_='" . $_POST['address_'] . "'  WHERE id_org='" . $_POST['id_org'] . "'");
 $message = "Record Modified Successfully";
 }
-$result = mysqli_query($conn,"SELECT * FROM org WHERE id_org='" . $_GET['id_org'] . "'");
+$result = mysqli_query($conn,"SELECT * FROM org WHERE id_org='"
+                       . $_GET['id_org'] . "'");
 $row= mysqli_fetch_array($result);
 ?>
 <html>
