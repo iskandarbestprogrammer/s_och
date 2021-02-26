@@ -12,7 +12,7 @@ if(empty($_POST['kab'])){ echo "Заполните поле пола";}else{
 if(empty($_POST['pas_num'])){ echo "Заполните поле тип клиента";}else{
 if(empty($_POST['dolj'])){ echo "Заполните поле район";}else{ 
 if(empty($_POST['log'])){ echo "Заполните поле логин";}else{
-if(empty($_POST['psw'])){echo "Заполните поле пароля";}else{
+if(empty($_POST['psw'])){echo "Заполните поле пароляя";}else{
 $q_sel_login = "select login_ from sp where login_= '".trim($_POST['log'])."'";
 $res_sel_login=mysqli_query($conn,$q_sel_login);
 $num_rows_sel_login=mysqli_num_rows($res_sel_login);
