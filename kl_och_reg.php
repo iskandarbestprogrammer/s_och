@@ -4,7 +4,7 @@ session_start();
 if(isset($_POST['bron_och'])){
 if(empty($_POST['data_priema'])){ echo "Заполните поле дата приема ";}else{
 if(empty($_POST['vremya_priema'])){ echo "Заполните поле время приема ";}else{
-if(empty($_POST['prichina'])){ echo "Заполните поле причина ";}else{
+if(empty($_POST['prichina'])){ echo "Заполните  поле причина ";}else{
 if(empty($_POST['coment'])){ echo "Заполните поле комментарии";}else{
       
             $sp_name = $_POST['sp'];
