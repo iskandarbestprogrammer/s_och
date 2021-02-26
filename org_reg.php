@@ -13,7 +13,7 @@ $res_sel_login=mysqli_query($conn,$q_sel_login);
 $num_rows_sel_login=mysqli_num_rows($res_sel_login);
  if ($num_rows_sel_login!=0) {
      # code...
-     echo "Пользователь с таким именем уже существует!!!";
+     echo "Пользователь с таким именем уже существует!";
  }else {
   
      $q_ins_reg_org = "call sp_ins_org_reg
