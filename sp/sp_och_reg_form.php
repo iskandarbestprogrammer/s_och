@@ -19,7 +19,7 @@ width: 50%;
 border: 3px solid green;
 padding: 10px; text-align:center'>
     <h1>Регистрация очереди для специалиста</h1>
-    <form method="post" action="och_reg.php">
+    <form method="post" action="sp_och_reg.php">
     <!-- <label>Номер очереди</label><br>
     <input type="text" name="nomer_ochered"> <br> -->
     <label>Клиент</label><br>
