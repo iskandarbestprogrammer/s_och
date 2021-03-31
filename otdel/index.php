@@ -87,7 +87,6 @@ body {font-family: Arial, Helvetica, sans-serif;}
 	<tr class="<?php if(isset($classname)) echo $classname;?>">
 	<td><?php echo $row["id_otdel"]; ?></td>
 	<td><?php echo $row["otdel"]; ?></td>
-	<td><?php echo $row["org_id_org"]; ?></td>
     <a href="upd_otdel.php?id_otdel=<?php echo $row["id_otdel"]; ?>"  class="btn btn-success"> Редактировать</a>
 	</tr>
 	<?php
