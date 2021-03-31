@@ -1,6 +1,8 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <?php
-include 'menu.php';
-include 'conn.php';
+// include '../menu.php';
+session_start();
+include '../conn.php';
 if(count($_POST)>0) {
 mysqli_query($conn,"UPDATE  sp set  id_sp='" . $_POST['id_sp'] . "', fam='" . $_POST['fam'] . "', 
 imya='" . $_POST['imya'] . "', otch='" . $_POST['otch'] . "'
@@ -8,7 +10,7 @@ imya='" . $_POST['imya'] . "', otch='" . $_POST['otch'] . "'
 , doljnost='" . $_POST['doljnost'] . "', login_='" . $_POST['login_'] . "', 
 psw='" . $_POST['psw'] . "'
 WHERE id_sp='" . $_POST['id_sp'] . "'") ;
-header("Location: org_list.php");
+header("Location: index.php");
 $message = "Record Modified Successfully";
 }
 // else {
@@ -22,13 +24,60 @@ $row= mysqli_fetch_array($result);
 <title>Update SP</title>
 </head>
 <body>
+<style>
+* {box-sizing: border-box}
+body {font-family: Arial, Helvetica, sans-serif;}
+
+.navbar {
+  width: 100%;
+  background-color: #555;
+  overflow: auto;
+}
+
+.navbar a {
+  float: left;
+  padding: 12px;
+  color: white;
+  text-decoration: none;
+  font-size: 17px;
+  width: 20%; /* Four links of equal widths */
+  text-align: center;
+}
+
+.navbar a:hover {
+  background-color: #000;
+}
+
+.navbar a.active {
+  background-color: #4CAF50;
+}
+
+@media screen and (max-width: 500px) {
+  .navbar a {
+    float: none;
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
+</style>
+<div class="navbar">
+  <a class="active" href="../all_org.php"><i class="fa fa-fw fa-home"></i>Организация</a> 
+  <a href="../otdel/index.php"><i class="fa fa-fw fa-envelope"></i> Отделение</a> 
+  <a href="../sp/sp_och_reg_form.php"><i class="fa fa-fw fa-envelope"></i> Расписание</a> 
+  <a href="../kl/kl_reg_form.php"><i class="fa fa-fw fa-user"></i> Клиент</a>
+  <a href="index.php"><i class="fa fa-fw fa-user"></i> Личный кабинет</a>
+ 
+</div>
+
 <div class="container">
+    <h1>Редактирование</h1>
 <form name="frmUser" method="post" action="">
 <div><?php if(isset($message)) { echo $message; 
 } ?>
 </div>
 <div style="padding-bottom:5px;">
-<a type="button" class="btn btn-primary" href="org_list.php">назад</a>
+
 </div>
 <br>
 № <br>

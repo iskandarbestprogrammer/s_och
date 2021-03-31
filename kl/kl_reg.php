@@ -1,7 +1,8 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <?php require "conn.php";
 if(isset($_POST['reg_kl'])){
 $date_clicked = date("Y-m-d");
-var_dump($tp_kl);
+// var_dump($tp_kl);
 // $date = "2012-08-06";
     //Проверка пустоту 
 if(empty($_POST['fam'])){ echo "Заполните поле фамилия ";}else{

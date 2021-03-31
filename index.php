@@ -1,4 +1,8 @@
-<?php include "menu.php" ?> 
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<?php 
+// include "menu.php"
+session_start();
+ ?> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,13 +17,13 @@
 <img src="img/kl.jpg" style="width:100%; height:100%; border:1px solid blue;  align:center" >
 <br>
 <br>
-<button type="button" class="btn btn-primary btn-lg btn-block"> <a href="kl/kl_log_form.php" style="color:white;">Клиент </a></button>
+<button type="button" class="btn btn-primary btn-lg btn-block"> <a href="kl_log_form.php" style="color:white;">Клиент </a></button>
 </div>
 <div class="col-lg-6">
 <img src="img/sp.jpg" style="width:100%; height:100%; border:1px solid blue; align : center ">
 <br>
 <br>
-<button type="button" class="btn btn-primary btn-lg btn-block" ><a href="sp/sp_log_form.php" style="color:white;">Специалист</a></button>
+<button type="button" class="btn btn-primary btn-lg btn-block" ><a href="sp_log_form.php" style="color:white;">Специалист</a></button>
 </div>
 </div>
 </div>

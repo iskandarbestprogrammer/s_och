@@ -57,50 +57,57 @@ body {font-family: Arial, Helvetica, sans-serif;}
 </style>
 <body>
 <div class="navbar">
-  <a class="active" href="../org/index.php"><i class="fa fa-fw fa-home"></i>Организация</a> 
+  <a class="active" href="index.php"><i class="fa fa-fw fa-home"></i>Организация</a> 
   <a href="../otdel/index.php"><i class="fa fa-fw fa-envelope"></i> Отделение</a> 
   <a href="../sp/sp_och_reg_form.php"><i class="fa fa-fw fa-envelope"></i> Расписание</a> 
   <a href="../kl/kl_reg_form.php"><i class="fa fa-fw fa-user"></i> Клиент</a>
   <a href="../sp/index.php"><i class="fa fa-fw fa-user"></i> Личный кабинет</a>
 </div>
-
-
-<div class="otdl" style=" margin:auto;
-  width: 20%;
-  border: 3px solid green;
-  padding: 10px; text-align:center" >
-<h1>Регистрация отдел</h1> 
-<form action="otdel_reg.php" method="post">
-<label>Название отдела</label><br>
-<input  type="text" name="otdel_name">
-<br>
-<label>Выберите организации</label>
-<br>
-<select name='sel_org' id='sel_org'>
-<?php 
-//Соединение к БД
-require "../conn.php";
-//Запрос на вывод организ
-$orgid=$_SESSION['id_org'];
-$q_sel_org = "SELECT id_org, org FROM org where id_org='$orgid'";
-//Результат выполнения запроса
-$res0 = mysqli_query($conn, $q_sel_org);
-//Перебор значений уже полученных от запроса
-$org_id;
-while($row0 = mysqli_fetch_array($res0)) {
-  echo"<option value = $row0[0]>$row0[1]</option>";
-  $org_id=$row0[0];
-}
-//Закрываем соединение
-mysqli_close($conn); 
-//Освобождаем память от результатов запроса
-mysqli_free_result($res0); ?>
-  ?>
-    </select>
-<br><br>
-<input type = "submit" class="registerbtn" name = "reg_otdl" value = "Зарегистрировать">
-</form>
+<div class="container">
+<div class="row">
+<div class="col-lg-12">
+<h1 style="text-align:center">Организация</h1>
+<table  class="table table-striped">
+	<tr>
+	
+<th>Организация</th>
+<th>Телефон</th>
+<th>Адресс</th>
+<th>Режим от</th>
+<th>до</th>
+<th>Рабочий дни</th>
+<th>Редактирование</th>
+	</tr>
+	<?php
+    require "../conn.php";
+	$idsp_org=$_SESSION['id_sp'];
+	$result = mysqli_query($conn,"select sp.id_sp, otdel.org_id_org, org.id_org,org.org,org.tel,org.address_,org.vremya_raboty_nach,org.vremya_rabot_kon,org.raboch_dni from sp 
+	join otdel on otdel.id_otdel=otdel_id_otdel 
+	join org on org.id_org=otdel.org_id_org where sp.id_sp='$idsp_org' ");
+	$i=0;
+    $tmp=mysqli_num_rows($result);
+    if($tmp!=0){
+	while($row = mysqli_fetch_array($result)) {
+	?>
+	<tr class="<?php if(isset($classname)) echo $classname;?>">
+	<td><?php echo $row["org"]; ?></td>
+	<td><?php echo $row["tel"]; ?></td>
+	<td><?php echo $row["address_"]; ?></td>
+	<td><?php echo $row["vremya_raboty_nach"]; ?></td>
+	<td><?php echo $row["vremya_rabot_kon"]; ?></td>
+	<td><?php echo $row["raboch_dni"]; ?></td>
+  <a href="upd_org.php?id_org=<?php echo $row["id_org"]; ?>"  class="btn btn-success"> Редактировать</a>
+	</tr>
+	<?php
+	$i++;
+	    }
+    }else {
+       echo ' <a href="org_reg_form.php" class="btn btn-success">Регистрация организации</a>  <a href="poisk_form.php" class="btn btn-success">Поиск организации</a>';
+    }
+	?>
+</table>
 </div>
-
+</div>
+</div>
 </body>
 </html>

@@ -1,5 +1,6 @@
-
-<link rel="stylesheet" href="register.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/register.css">.
+<link rel="stylesheet" href="../css/main.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- <script type="text/javascript">
 function fetch_select(val)
@@ -38,7 +39,7 @@ function fetch_select(val)
     <br>
     <?php 
 //Соединение к БД
-require "conn.php";
+require "../conn.php";
 //Запрос на вывод городов
 $q_sel_pol = "select * from pol ";
 //Результат выполнения запроса
@@ -84,7 +85,7 @@ mysqli_free_result($res0); ?>
     <br>
      <?php 
 //Соединение к БД
-require "conn.php";
+require "../conn.php";
 //Запрос на вывод городов
 $q_sel_rayon = "select * from tp_kl ";
 //Результат выполнения запроса
@@ -131,7 +132,7 @@ mysqli_free_result($res0); ?>
     <!-- <select name='sel_rayon' id='sel_rayon' onchange = sel_gorod(document.getElementById(sel_rayon).value)> -->
     <?php 
 //Соединение к БД
-require "conn.php";
+require "../conn.php";
 //Запрос на вывод городов
 $q_sel_rayon = "select * from rayon ";
 //Результат выполнения запроса
@@ -181,7 +182,7 @@ mysqli_free_result($res0); ?>
  
     <?php 
 //Соединение к БД
-require "conn.php";
+require "../conn.php";
 //Запрос на вывод городов
 $q_sel_natio = "select * from nationality ";
 //Результат выполнения запроса

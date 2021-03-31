@@ -57,50 +57,55 @@ body {font-family: Arial, Helvetica, sans-serif;}
 </style>
 <body>
 <div class="navbar">
-  <a class="active" href="../org/index.php"><i class="fa fa-fw fa-home"></i>Организация</a> 
+  <a class="active" href="index.php"><i class="fa fa-fw fa-home"></i>Организация</a> 
   <a href="../otdel/index.php"><i class="fa fa-fw fa-envelope"></i> Отделение</a> 
   <a href="../sp/sp_och_reg_form.php"><i class="fa fa-fw fa-envelope"></i> Расписание</a> 
   <a href="../kl/kl_reg_form.php"><i class="fa fa-fw fa-user"></i> Клиент</a>
   <a href="../sp/index.php"><i class="fa fa-fw fa-user"></i> Личный кабинет</a>
 </div>
-
-
-<div class="otdl" style=" margin:auto;
-  width: 20%;
-  border: 3px solid green;
-  padding: 10px; text-align:center" >
-<h1>Регистрация отдел</h1> 
-<form action="otdel_reg.php" method="post">
-<label>Название отдела</label><br>
-<input  type="text" name="otdel_name">
-<br>
-<label>Выберите организации</label>
-<br>
-<select name='sel_org' id='sel_org'>
-<?php 
-//Соединение к БД
-require "../conn.php";
-//Запрос на вывод организ
-$orgid=$_SESSION['id_org'];
-$q_sel_org = "SELECT id_org, org FROM org where id_org='$orgid'";
-//Результат выполнения запроса
-$res0 = mysqli_query($conn, $q_sel_org);
-//Перебор значений уже полученных от запроса
-$org_id;
-while($row0 = mysqli_fetch_array($res0)) {
-  echo"<option value = $row0[0]>$row0[1]</option>";
-  $org_id=$row0[0];
-}
-//Закрываем соединение
-mysqli_close($conn); 
-//Освобождаем память от результатов запроса
-mysqli_free_result($res0); ?>
-  ?>
-    </select>
-<br><br>
-<input type = "submit" class="registerbtn" name = "reg_otdl" value = "Зарегистрировать">
-</form>
+<div class="container">
+<div class="row">
+<div class="col-lg-6">
+    <h1>Результат</h1>
+    <div class="content" name="content" id="content"></div>
 </div>
-
+ <div class="col-lg-6">
+ <h1>Поиск организации</h1>
+<lablel>Название организации</lablel>
+<br>
+<input type="text" name="org" id="org" placeholder="Введите название организации">
+<br><br>
+<label>Номер телефона</label><br>
+<input type="text" name="nomer" id="nomer" placeholder="Введите номер телефона">
+<br><br>
+<label>ИНН номер</label><br>
+<input type="text" name="innnomer" id="innnomer" placeholder="ИНН номер">
+<br><br>
+<button id="poisk">Поиск</button>
+ </div>   
+</div>    
+</div>
 </body>
 </html>
+
+<script>
+$(document).ready(function(){
+  $('#poisk').click(function () {
+    $.ajax({
+      type:'POST',
+								url: 'poisk.php',
+								data:
+								'org='+document.getElementById('org').value  +
+								'&nomer='+document.getElementById('nomer').value +
+                '&innnomer='+document.getElementById('innnomer').value ,
+								success: function (data){
+										if(data.length != 0) {alert(data);
+                                            $('#content').html(data);
+                                        }
+							
+							
+                  }});
+             })});
+
+
+  </script>

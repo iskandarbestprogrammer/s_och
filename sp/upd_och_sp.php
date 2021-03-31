@@ -1,6 +1,8 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <?php
-include 'menu.php';
-include_once 'conn.php';
+// include '../menu.php';
+session_start();
+include_once '../conn.php';
 if(count($_POST)>0) {
 mysqli_query($conn,"UPDATE org set id_org='" . $_POST['id_org'] . "', org='" . $_POST['org'] . "', tel='" . $_POST['tel'] . "', address_='" . $_POST['address_'] . "'  WHERE id_org='" . $_POST['id_org'] . "'");
 $message = "Record Modified Successfully";

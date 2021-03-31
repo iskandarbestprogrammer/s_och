@@ -63,44 +63,44 @@ body {font-family: Arial, Helvetica, sans-serif;}
   <a href="../kl/kl_reg_form.php"><i class="fa fa-fw fa-user"></i> Клиент</a>
   <a href="../sp/index.php"><i class="fa fa-fw fa-user"></i> Личный кабинет</a>
 </div>
-
-
-<div class="otdl" style=" margin:auto;
-  width: 20%;
-  border: 3px solid green;
-  padding: 10px; text-align:center" >
-<h1>Регистрация отдел</h1> 
-<form action="otdel_reg.php" method="post">
-<label>Название отдела</label><br>
-<input  type="text" name="otdel_name">
-<br>
-<label>Выберите организации</label>
-<br>
-<select name='sel_org' id='sel_org'>
-<?php 
-//Соединение к БД
-require "../conn.php";
-//Запрос на вывод организ
-$orgid=$_SESSION['id_org'];
-$q_sel_org = "SELECT id_org, org FROM org where id_org='$orgid'";
-//Результат выполнения запроса
-$res0 = mysqli_query($conn, $q_sel_org);
-//Перебор значений уже полученных от запроса
-$org_id;
-while($row0 = mysqli_fetch_array($res0)) {
-  echo"<option value = $row0[0]>$row0[1]</option>";
-  $org_id=$row0[0];
-}
-//Закрываем соединение
-mysqli_close($conn); 
-//Освобождаем память от результатов запроса
-mysqli_free_result($res0); ?>
-  ?>
-    </select>
-<br><br>
-<input type = "submit" class="registerbtn" name = "reg_otdl" value = "Зарегистрировать">
-</form>
+<div class="container">
+<div class="row">
+<div class="col-lg-12">
+<h1 style="text-align:center">Отделение</h1>
+<table  class="table table-striped">
+	<tr>
+	<th>№</th>
+<th>Отдел</th>
+<th>Организации</th>
+<th>Редактировать</th>
+	</tr>
+	<?php
+     require "../conn.php";
+		$idsp_org=$_SESSION['id_sp'];
+	$result = mysqli_query($conn,"select sp.id_sp, otdel.id_otdel, otdel.otdel, otdel.org_id_org from sp join 
+	otdel on otdel.id_otdel=otdel_id_otdel where sp.id_sp='$idsp_org'");
+	$i=0;
+    $tmp=mysqli_num_rows($result);
+    if($tmp!=0){
+	while($row = mysqli_fetch_array($result)) {
+	?>
+	<tr class="<?php if(isset($classname)) echo $classname;?>">
+	<td><?php echo $row["id_otdel"]; ?></td>
+	<td><?php echo $row["otdel"]; ?></td>
+	<td><?php echo $row["org_id_org"]; ?></td>
+    <a href="upd_otdel.php?id_otdel=<?php echo $row["id_otdel"]; ?>"  class="btn btn-success"> Редактировать</a>
+	</tr>
+	<?php
+	$i++;
+    
+	}
+}else {
+    echo ' <a href="otdel_reg_form.php" class="btn btn-success">Регистрация отдела</a>  <a href="poisk_form.php" class="btn btn-success">Поиск отдела</a>';
+ }
+	?>
+</table>
 </div>
-
+</div>
+</div>
 </body>
 </html>

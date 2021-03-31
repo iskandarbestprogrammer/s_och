@@ -1,5 +1,7 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <?php
-require "menu.php";
+session_start();
+// require "menu.php";
 // if (!isset($_SESSION['id_kl'])) {
 //     header("Location:kl_log_from.php");
 // }

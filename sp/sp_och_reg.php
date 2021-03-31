@@ -1,13 +1,12 @@
-<?php require "conn.php";
+<?php require "../conn.php";
 session_start();
     $count=0;
-if(isset($_POST['bron_och'])){
+// if(isset($_POST['bron_och'])){
     //Проверка пустоту 
-if(empty($_POST['data_priema'])){ echo "Заполните поле дата приема ";}else{
+if(empty($_POST['data_priem'])){ echo "Заполните поле дата приема ";}else{
 if(empty($_POST['vremya_priema'])){ echo "Заполните поле время приема ";}else{
 if(empty($_POST['dlitel'])){ echo "Заполните поле длительность";}else{
-    if(empty($_POST['prichina'])){ echo "Заполните поле причина ";}else{
-        if(empty($_POST['coment'])){ echo "Заполните поле комментарии";}else{
+   
       
 
 $q_sel_login = 1;
@@ -34,27 +33,22 @@ $num_rows_sel_login=mysqli_num_rows($res_sel_login);
 
     $id_sp =$_SESSION['id_sp'];
 
-    $count++;
   
      $q_ins_reg_org = "call sp_ins_och_reg
 ("."'".$_POST['data_priema']."'".",
-$count,
 "."'".$_POST['vremya_priema']."'".",
 "."'".$_POST['dlitel']."'".",
-"."'".$_POST['prichina']."'".",
-"."'".$_POST['coment']."'"." ,
-'$id_sp',
-'$id_kl')";
+'$id_sp')";
 mysqli_query($conn, $q_ins_reg_org) or die(mysqli_error($conn));
 mysqli_close($conn);
- header("Location:all_org.php"); 
+//  header("Location:all_org.php"); 
  exit;
  }
 }    
 }   
 }    
-}    
-}
-}   
+// }    
+// }
+// }   
 
 

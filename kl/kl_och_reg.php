@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <?php require "conn.php";
 session_start();
     $count=0;
@@ -7,9 +8,9 @@ if(empty($_POST['vremya_priema'])){ echo "Заполните поле время
 if(empty($_POST['prichina'])){ echo "Заполните поле причина ";}else{
 if(empty($_POST['coment'])){ echo "Заполните поле комментарии";}else{
       
-            $sp_name = $_POST['sp'];
-$q_sel_login = "select ochered.vremya_priema ,sp.id_sp,sp.imya from ochered join sp on sp.id_sp=ochered.sp_id_sp
- where ochered.vremya_priema= '".trim($_POST['vremya_priema'])."' and  sp.imya='$sp_name'";
+$sp_name = $_POST['sp'];
+$q_sel_login = "select vremya_priema  from ochered 
+ where vremya_priema= '".trim($_POST['vremya_priema'])."' ";
 $res_sel_login=mysqli_query($conn,$q_sel_login);
 $num_rows_sel_login=mysqli_num_rows($res_sel_login);
 

@@ -1,5 +1,6 @@
 <?php
-include_once 'menu.php';
+session_start();
+// include_once 'menu.php';
 include_once 'conn.php';
 if(!$_SESSION['id_sp'])
 {
@@ -16,12 +17,13 @@ if(!$_SESSION['id_sp'])
 <head>
 <link rel="stylesheet" href="style.css">
 <title>Delete employee data</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
 <div class="container">
 <div class="row">
 <div class="col-lg-12">
-<h1 style="text-align:center">Таблица очереди</h1>
+<h1 style="text-align:center">Очередь</h1>
 <table  class="table table-striped">
 	<tr>
 	<th>№</th>
@@ -69,7 +71,7 @@ if(!$_SESSION['id_sp'])
 
 <div class="row">
 <div class="col-lg-12">
-<h1 style="text-align:center" >Таблица специалиста</h1>
+<h1 style="text-align:center" >Профиль</h1>
 <table  class="table table-striped">
 	<tr>
 	<th>№</th>
@@ -83,7 +85,6 @@ if(!$_SESSION['id_sp'])
 <th>Дольжность</th>
 <th>Логин </th>
 <th>Пароль</th>
-<th>Удалить </th>
 <th>Редактировать</th>
 	</tr>
 	<?php
@@ -104,8 +105,8 @@ if(!$_SESSION['id_sp'])
 	<td><?php echo $row["doljnost"]; ?></td>
 	<td><?php echo $row["login_"]; ?></td>
 	<td><?php echo $row["psw"]; ?></td>
-	<td><a href="del_sp.php?id_sp=<?php echo $row["id_sp"]; ?>">Удалить </a></td>
-	<td><a href="upd_sp.php?id_sp=<?php echo $row["id_sp"]; ?>"> Редактировать</a></td>
+	
+	<td><a href="sp/upd_sp.php?id_sp=<?php echo $row["id_sp"]; ?>"> Редактировать</a></td>
 	</tr>
 	<?php
 	$i++;
@@ -117,14 +118,12 @@ if(!$_SESSION['id_sp'])
 
 <div class="row">
 <div class="col-lg-12">
-<h1 style="text-align:center">Таблица отдел</h1>
+<h1 style="text-align:center">Отделение</h1>
 <table  class="table table-striped">
 	<tr>
 	<th>№</th>
 <th>Отдел</th>
 <th>Организации</th>
-<th>Удалить </th>
-<th>Редактировать</th>
 	</tr>
 	<?php
 		$idsp_org=$_SESSION['id_sp'];
@@ -137,9 +136,6 @@ if(!$_SESSION['id_sp'])
 	<td><?php echo $row["id_otdel"]; ?></td>
 	<td><?php echo $row["otdel"]; ?></td>
 	<td><?php echo $row["org_id_org"]; ?></td>
-
-	<td><a href="del_otdel.php?id_otdel=<?php echo $row["id_otdel"]; ?>">Удалить </a></td>
-	<td><a href="upd_otdel.php?id_otdel=<?php echo $row["id_otdel"]; ?>"> Редактировать</a></td>
 	</tr>
 	<?php
 	$i++;
@@ -152,7 +148,7 @@ if(!$_SESSION['id_sp'])
 
 <div class="row">
 <div class="col-lg-12">
-<h1 style="text-align:center">Таблица организация</h1>
+<h1 style="text-align:center">Организация</h1>
 <table  class="table table-striped">
 	<tr>
 	<th>№</th>
@@ -162,8 +158,6 @@ if(!$_SESSION['id_sp'])
 <th>Режим работ от</th>
 <th>до</th>
 <th>Рабочий дни</th>
-<th>Удалить </th>
-<th>Редактировать</th>
 	</tr>
 	<?php
 	$idsp_org=$_SESSION['id_sp'];
@@ -181,8 +175,6 @@ if(!$_SESSION['id_sp'])
 	<td><?php echo $row["vremya_raboty_nach"]; ?></td>
 	<td><?php echo $row["vremya_rabot_kon"]; ?></td>
 	<td><?php echo $row["raboch_dni"]; ?></td>
-	<td><a href="del_org.php?id_org=<?php echo $row["id_org"]; ?>">Удалить </a></td>
-	<td><a href="upd_org.php?id_org=<?php echo $row["id_org"]; ?>"> Редактировать</a></td>
 	</tr>
 	<?php
 	$i++;

@@ -48,23 +48,39 @@ if (isset($_POST['search'])) {
       <li class="nav-item active" style='margin-left:30%'>
         <a class="nav-link" href="all_org.php">Организации</a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link " href="och_list.php">Очереди</a>
-      </li>
+
     
       <?php 
 
 if (!isset($_SESSION['id_sp'])) {
  echo ' <li class="nav-item active"><a class="nav-link " style="display:none" href="och_reg_form.php">Брон</a> </li>';
- echo ' <li class="nav-item active"><a class="nav-link " style="display:none" id= "del_update" href="org_list.php">Редак_Удален</a></li>';
+ echo ' <li class="nav-item active">
+ <a class="nav-link " style="display:none" id= "del_update" href="org_list.php">Редак_Удален</a>
+ </li>';
+ echo ' <li class="nav-item active">
+ <a class="nav-link " style="display:none"  href="sp_otdel_reg_form.php">Отделение</a>
+ </li>';
+ echo ' <li class="nav-item active">
+ <a class="nav-link " style="display:none"  href="new_sp_form.php">Специалист</a>
+ </li>';
+
  
 }else{
-  echo ' <li class="nav-item active"><a class="nav-link " style="display:block" href="och_reg_form.php">Брон</a> </li>';
-  echo ' <li class="nav-item active"><a class="nav-link " style="display:block" id= "del_update" href="org_list.php">Редак_Удален</a></li>';
+  echo ' <li class="nav-item active"><a class="nav-link " style="display:block" href="sp_och_reg_form.php">Брон</a> </li>';
+  echo ' <li class="nav-item active"><a class="nav-link " style="display:block" id= "del_update" href="../org_list.php">Редак_Удален</a></li>';
+  echo ' <li class="nav-item active">
+  <a class="nav-link " style="display:block"  href="sp_otdel_reg_form.php">Отделение</a>
+  </li>';
+  echo ' <li class="nav-item active">
+  <a class="nav-link " style="display:block"  href="sp/sp_reg_form.php">Сп</a>
+  </li>';
+  echo ' <li class="nav-item active">
+  <a class="nav-link " style="display:block"  href="kl/kl_reg_form.php">Кл</a>
+  </li>';
 }
 
 if (!isset($_SESSION['id_kl'])) {
-  echo ' <li class="nav-item active"><a class="nav-link " style="display:none" href="kl_och_reg_from.php">Брон</a> </li>';
+  echo ' <li class="nav-item active"><a class="nav-link " style="display:none" href="kl/kl_och_reg_from.php">Брон</a> </li>';
  
   
  }else{
@@ -79,7 +95,7 @@ if (!isset($_SESSION['id_kl'])) {
     
     </ul>
     <div class="searchQ" style="margin-right:100px">
-    <form method="post" action="index.php" class="form-inline my-2 my-lg-0">
+    <form method="post" action="../menu.php" class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="text" placeholder="Поиск организации" aria-label="Search"  name='search'>
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name='searchbtn' >Поиск</button>
 

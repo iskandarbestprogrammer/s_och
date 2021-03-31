@@ -1,6 +1,7 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <?php
 session_start();
-require "conn.php";
+require "../conn.php";
 
 if(isset($_POST['reg_otdl'])){
 

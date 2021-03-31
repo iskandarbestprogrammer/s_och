@@ -2,13 +2,15 @@
 
 <?php 
 session_start();
+
 // require '../menu.php';
 if(!$_SESSION['id_sp'])
 {
  
     header("Location: sp_log_form.php");//redirect to login page to secure the welcome page without login access.
   }
-?><!DOCTYPE html>
+?>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -61,57 +63,77 @@ body {font-family: Arial, Helvetica, sans-serif;}
   <a href="sp_och_reg_form.php"><i class="fa fa-fw fa-envelope"></i> Расписание</a> 
   <a href="../kl/kl_reg_form.php"><i class="fa fa-fw fa-user"></i> Клиент</a>
   <a href="index.php"><i class="fa fa-fw fa-user"></i> Личный кабинет</a>
-  <form action = '../exit_form.php' method = 'POST'>
+   <form action = '../exit_form.php' method = 'POST'>
 <input type = 'submit' name = 'b2' class="btn btn-outline-success my-2 my-sm-0" value = 'Выйти'>
+</form>
+</div> 
 </div>
-
-<div class="container">
   
+</nav>
+<!-- <div class='search_org' style=" margin: right;
+margin-right:30px;
+  padding: 10px;"  > -->
 
+</div>
+ 
 <div class="row">
 <div class="col-lg-6">
-<h1>Добавить расписание</h1>
-    <label>Дата приема</label><br>
-    <input type="date" id='data_priema' name="data_priema"><br>
-    <label>Время приема </label><br>
-    <input type="time" id='vremya_priema' name="vremya_priema" ><br>
-    <label>Длительность(минуте)</label><br>
-    <input type="number" id="dlitel" name="dlitel" ><br>
-    <br>
-    <button id = "b2" >Добавить</button>
+
 </div>
+
+
+<!-- 222 -->
 <div class="col-lg-6">
-<h1>Расписание</h1>
-<div class="content" id="content">
+<h1 style="text-align:center" >Мой Профиль</h1>
+
+
+	<?php
+    require "../conn.php";
+		$idsp_org=$_SESSION['id_sp'];
+	$result = mysqli_query($conn,"SELECT * FROM sp where id_sp='$idsp_org'");
+	$i=0;
+	while($row = mysqli_fetch_array($result)) {
+	?>
+	<div class="profile">
+    <div class="container">
+     <div class="row">
+         <div class=""><ul><li><span>Фамилия: </span><?php echo $row["fam"]; ?></li>
+          <li><span>Имя: </span><?php echo $row["imya"]; ?></li> 
+           <li><span>Отчества: </span><?php echo $row["otch"]; ?></li>
+        <li><span>Отделение: </span><?php echo $row["otdel_id_otdel"]; ?></li>
+          <li><span>Кабинет: </span><?php echo $row["kab"]; ?></li> 
+           <li><span>Пасспорт: </span><?php echo $row["passport_"]; ?></li>
+           <li><span>Должность: </span><?php echo $row["doljnost"]; ?></li>
+           <li><span>Дата регистрации: </span><?php echo $row["reg_date"]; ?></li>
+           <a href="upd_sp.php?id_sp=<?php echo $row["id_sp"]; ?>"  class="btn btn-success"> Редактировать</a>
+           </ul>
+        
+        </div>
+   
+     </div>   
+    </div>
+</div>
+	<!-- <td><?php echo $row["id_sp"]; ?></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td><?php echo $row["passport_"]; ?></td>
+	<td></td>
+	<td><?php echo $row["login_"]; ?></td>
+	<td><?php echo $row["psw"]; ?></td> -->
+	
+	<td></td>
+	</tr>
+	<?php
+	$i++;
+	}
+	?>
+</table>
 </div>
 </div>
-</div>
-</div>
+
 </body>
 </html>
-<script>
-$(document).ready(function(){
-  $('#b2').click(function () {
-    $.ajax({
-      type:'POST',
-								url: 'sp_och_reg.php',
-								data:
-								'data_priem='+document.getElementById('data_priema').value  +
-								'&vremya_priema='+document.getElementById('vremya_priema').value  +
-                '&dlitel='+document.getElementById('dlitel').value,
-								success: function (data){
-           alert('work');
-           if(data.length != 0) {alert(data);}
-                  // $('#content').html(data);
-                  // alert('work')
-								//Если какая-либо запись пустая, то вывести что просит echo в reg.php  
-	
-                  }});
-             })});
-
- window.onload=function(){
-	$.ajax({type:'POST',
-			url: 'sel_sp_och.php',
-			success: function (data)  {	$('#content').html(data);	}});
-}
-  </script>

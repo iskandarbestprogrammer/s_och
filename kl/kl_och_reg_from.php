@@ -1,9 +1,11 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <?php 
-require 'menu.php';
+// require '../menu.php';
+session_start();
 if(!$_SESSION['id_kl'])
 {
  
-    header("Location: sp_log_form.php");//redirect to login page to secure the welcome page without login access.
+    header("Location: kl_log_form.php");//redirect to login page to secure the welcome page without login access.
   }
 
 ?><!DOCTYPE html>
@@ -29,26 +31,6 @@ padding: 10px; text-align:center'>
     <input type="date" name='data_priema' атрибуты><br>
     <label>Время приема </label><br>
     <input type="time" name='vremya_priema' атрибуты><br>
-    <!-- <input type = "submit" name = "b1" id="b1" value = "Проверить">
-    <script> 
-//Когда документ полностью прогружен
-$(document).ready(function () {
-//Пишем обработчик событий на кнопку b1
-    $('#b1').click(function () { 
-//Обновить данные без перезагрузки страницы
-	 $.ajax({   
-	 //Метод передачи данных
-	 type: 'POST',
-	 //Какой файл обрабатывает ваш запрос, прям полный путь
-            url: 'kl_och.php',
-	//Что вы передаете
-			data:'sp='+$('#sp').val()+'&vremya_priema='+$('#vremya_priema').val(),
-			//Когда ваш php код полностью отработан
-            success: function (data)  {
-                $('#content').html(data); 
-             }});
- });});
-</script> -->
     <br>
     <br>
     <label>Причина обращение</label><br>

@@ -1,5 +1,7 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <?php
-include 'menu.php';
+// include 'menu.php';
+session_start();
 include 'conn.php';
 if(count($_POST)>0) {
 mysqli_query($conn,"UPDATE  otdel set  id_otdel='" . $_POST['id_otdel'] . "', otdel='" . $_POST['otdel'] . "'

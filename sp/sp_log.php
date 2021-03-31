@@ -1,6 +1,6 @@
-<?php session_start(); require "conn.php";
-if(isset($_POST['log_sp']))
-{
+<?php session_start(); require "../conn.php";
+// if(isset($_POST['log_sp']))
+// {
 	if(empty($_POST['log'])) { echo"Имя пользователя пусто!!!";} else
 	if(empty($_POST['psw'])) { echo"Пароль пользователя пуст!!!";} else{
 	//--Авторизация
@@ -19,12 +19,14 @@ if(isset($_POST['log_sp']))
 					$_SESSION['imya'] = $row[2];
 					//echo $_SESSION['id_users'];
 					//Освободить память
-					mysqli_free_result($result); header("Location:och_reg_form.php"); exit;	
+					mysqli_free_result($result); header("Location:sp_och_reg_form.php"); exit;	
 				}
 			}
 		}
 }
 //Закрыть соединение 
-mysqli_close($conn);}?>
+mysqli_close($conn);
+// }
+?>
 
 
