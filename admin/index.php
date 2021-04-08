@@ -4,4 +4,7 @@
 <label for="login_">Логин</label>&nbsp &nbsp <input type = 'text' name = 'log'><br><br>
 <label for="login_">Пароль</label>&nbsp <input type = 'password' name = 'psw'><br><br>
 <input type = 'submit' value = 'Войти' name = 'log_admin'>&nbsp &nbsp
+<input type = //
+
+
 </form>
