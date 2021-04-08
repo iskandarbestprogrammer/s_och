@@ -3,11 +3,12 @@
  $imya="";
 	if(isset($_POST['log_admin']))
 	{
+		
 		if(empty($_POST['log'])) { echo"Имя пользователя пусто!!!";} else
 		if(empty($_POST['psw'])) { echo"Пароль пользователя пуст!!!";} else{
 		//--Авторизация
 			$q_sel = "select id_admins_ from admins where login_ = '".$_POST['log']."' and psw_ = '".$_POST['psw']."'";
-			//Результат запроса
+			//Результат запроса из база данных 
 			$result = mysqli_query($conn,$q_sel);
 			//Возвращает количество строк в результирующем запросе
 			$res_num_rows = mysqli_num_rows($result);
