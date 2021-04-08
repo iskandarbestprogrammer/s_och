@@ -35,9 +35,9 @@ echo '</tr>';
     }
 }
 }
-echo "</table>";
+echo "</table>";у
 mysqli_close($conn);mysqli_free_result($res_sp);
-    
+        
     
     ?>
 
