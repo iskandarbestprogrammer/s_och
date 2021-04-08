@@ -21,7 +21,9 @@
 						$_SESSION['fam'] = $row[1];
 					
 						//Освободить память
-						mysqli_free_result($result); header("Location:admin.php"); exit;	
+						mysqli_free_result($result); header("Location:admin.php");
+						
+						exit;	
 					}
 				}
 			}
