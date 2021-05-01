@@ -71,17 +71,18 @@ body {font-family: Arial, Helvetica, sans-serif;}
 	<tr>
 	
 <th>Организация</th>
+<th>ИНН</th>
 <th>Телефон</th>
-<th>Адресс</th>
-<th>Режим от</th>
-<th>до</th>
-<th>Рабочий дни</th>
+<th>Адрес</th>
+<th>Начало</th>
+<th>Конец</th>
+<th>Рабочие дни</th>
 <th>Редактирование</th>
 	</tr>
 	<?php
     require "../conn.php";
 	$idsp_org=$_SESSION['id_sp'];
-	$result = mysqli_query($conn,"select sp.id_sp, otdel.org_id_org, org.id_org,org.org,org.tel,org.address_,org.vremya_raboty_nach,org.vremya_rabot_kon,org.raboch_dni from sp 
+	$result = mysqli_query($conn,"select sp.id_sp, otdel.org_id_org, org.id_org,org.org,org.tel,org.address_,org.work_start,org.work_and,org.work_day from sp 
 	join otdel on otdel.id_otdel=otdel_id_otdel 
 	join org on org.id_org=otdel.org_id_org where sp.id_sp='$idsp_org' ");
 	$i=0;
@@ -91,11 +92,13 @@ body {font-family: Arial, Helvetica, sans-serif;}
 	?>
 	<tr class="<?php if(isset($classname)) echo $classname;?>">
 	<td><?php echo $row["org"]; ?></td>
+	<td><?php echo $row["inn"]; ?></td>
 	<td><?php echo $row["tel"]; ?></td>
 	<td><?php echo $row["address_"]; ?></td>
-	<td><?php echo $row["vremya_raboty_nach"]; ?></td>
-	<td><?php echo $row["vremya_rabot_kon"]; ?></td>
-	<td><?php echo $row["raboch_dni"]; ?></td>
+	<td><?php echo $row["work_start"]; ?></td>
+	<td><?php echo $row["work_and"]; ?></td>
+  <td><?php echo $row["work_day"]; ?></td>
+
   <a href="upd_org.php?id_org=<?php echo $row["id_org"]; ?>"  class="btn btn-success"> Редактировать</a>
 	</tr>
 	<?php

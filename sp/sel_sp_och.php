@@ -11,7 +11,7 @@ $id=$_SESSION['id_sp'];
 //     $id=$now[0];
 // }
 
-$q_sel_sem = "select data_priema,vremya_priema,dlitelnost,sp_id_sp from ochered where sp_id_sp='$id'";
+$q_sel_sem = "select data_priema,vremya_priema,sp_id_sp from ochered where sp_id_sp='$id'";
 $res = mysqli_query($conn, $q_sel_sem);
 echo "<br><table border = 1>
 <th>Дата приема</th>

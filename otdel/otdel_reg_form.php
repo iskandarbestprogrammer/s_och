@@ -72,7 +72,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 <h1>Регистрация отдел</h1> 
 <form action="otdel_reg.php" method="post">
 <label>Название отдела</label><br>
-<input  type="text" name="otdel_name">
+<input  type="text" name="otdel_name" >
 <br>
 <label>Выберите организации</label>
 <br>
@@ -81,8 +81,8 @@ body {font-family: Arial, Helvetica, sans-serif;}
 //Соединение к БД
 require "../conn.php";
 //Запрос на вывод организ
-$orgid=$_SESSION['id_org'];
-$q_sel_org = "SELECT id_org, org FROM org where id_org='$orgid'";
+
+$q_sel_org = "SELECT id_org, org FROM org where id_org='$_SESSION[id_org]'";
 //Результат выполнения запроса
 $res0 = mysqli_query($conn, $q_sel_org);
 //Перебор значений уже полученных от запроса

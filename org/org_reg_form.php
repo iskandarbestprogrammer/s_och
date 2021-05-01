@@ -78,7 +78,7 @@ while ($row=mysqli_fetch_array($result)) {
 $tmpres=mysqli_num_rows($result);
  if ($tmpres!=0){
 //Запрос на вывод городов
-$q_sel_pol = "select * from napr where id_napr=$napr  ";
+$q_sel_pol = "select * from napr   ";
 //Результат выполнения запроса
 $res0 = mysqli_query($conn, $q_sel_pol);
 $rayon_id;
@@ -114,7 +114,7 @@ mysqli_free_result($res0);}else{
 	function sel_naprf(a)
 	{
 		return $.ajax({type: 'POST',//Тип отправки данных
-            url: 'kl_reg.php',//Файл обработки
+            url: 'org_reg.php',//Файл обработки
 			data:'sel_napr='+a,//Номер области для ajax_db1.php
             success: function (data)  {	 }});//Обновить данные во вкладке городов
 	}	
@@ -165,8 +165,9 @@ $(document).ready(function(){
 								'&vremya_rabot_kon='+document.getElementById('vremya_rabot_kon').value  +
 								'&raboch_dni='+document.getElementById('raboch_dni').value,
 								success: function (data){
-                  location = '../otdel/otdel_reg_form.php';
                   alert(data);
+                  location = '../otdel/otdel_reg_form.php';
+                
 
                   // alert('work')
 								//Если какая-либо запись пустая, то вывести что просит echo в reg.php  

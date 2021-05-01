@@ -1,43 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Registration Form</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="../css/register.css">.
-<link rel="stylesheet" href="../css/main.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<!-- <script type="text/javascript">
-function fetch_select(val)
-{
- $.ajax({
- type: 'post',
- url: 'fetch_data.php',
- data: {
-  get_option:val
- },
- success: function (response) {
-  document.getElementById("new_select").innerHTML=response; 
- }
- });
-} -->
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<style type="text/css">
+#deceased{
+    background-color:#FFF3F5;
+	padding-top:10px;
+	margin-bottom:10px;
+}
+.remove_field{
+	float:right;	
+	cursor:pointer;
+	position : absolute;
+}
+.remove_field:hover{
+	text-decoration:none;
+}
+</style>
+  </head>
+  <body>
+<div class="panel panel-primary" style="margin:20px;">
+	<div class="panel-heading">
+        	<h3 class="panel-title">Регистрация для клиента</h3>
+	</div>
+<div class="panel-body">
+     <form> 
+<div class="col-md-12 col-sm-12">
+	<div class="form-group col-md-6 col-sm-6">
+            <label for="name">Имя*	</label>
+            <input type="text" class="form-control input-sm" id="imya" name="imya" placeholder="">
+        </div>
+        <div class="form-group col-md-6 col-sm-6">
+            <label for="email">Фамиля*</label>
+            <input type="text" class="form-control input-sm" id="fam" name="fam" placeholder="">
+        </div>
 
-<!-- </script>  -->
-<form action="kl_reg.php"  method = "POST">
-  <div class="container">
-    <h1>Регистрация клиента</h1>
-    <hr>
+        <div class="form-group col-md-6 col-sm-6">
+            <label for="mobile">Отчество*</label>
+            <input type="text" class="form-control input-sm" id="otch" name="otch" placeholder="">
+        </div>
 
-    <label for="email"><b>Фамиля</b></label>
-    <input type="text" placeholder="Введите фамиля" name="fam" id="fam" required>
-
-    <label for="email"><b>Имя</b></label>
-    <input type="text" placeholder="Введите  имя" name="imya" id="imya" required>
-
-    <label for="email"><b>Отчество</b></label>
-    <input type="text" placeholder="Введите отчество" name="otch" id="otch" required>
-
-    <label for="email"><b>Телефон</b></label>
-    <input type="text" placeholder="Введите контакт" name="tel" id="tel" required>
-    <br>
-    <label for='sel_pol'><b>Пол</b></label>
-    <br>
-    <?php 
+	<div class="form-group col-md-6 col-sm-6">
+	      <label for="address">Телефон*</label>
+        <input type="text" class="form-control input-sm" id="tel" name="tel" placeholder="">
+	   </div>
+	
+	<div class="form-group col-md-6 col-sm-6">
+            <label for="city">Номер пасспорта *</label>
+            <input type="text" class="form-control input-sm" id="passport" name="passport" placeholder="">
+        </div>
+	
+	<div class="form-group col-md-6 col-sm-6">
+            <label for="state">Адресс*</label>
+            <input type="text" class="form-control input-sm" id="adress" name="adress" placeholder="">
+        </div>
+        <div class = "form-group col-md-6 col-sm-6">
+	      <label for="months">Выберите пол  *</label>
+        <?php 
 //Соединение к БД
 require "../conn.php";
 //Запрос на вывод городов
@@ -45,8 +72,7 @@ $q_sel_pol = "select * from pol ";
 //Результат выполнения запроса
 $res0 = mysqli_query($conn, $q_sel_pol);
 $rayon_id;
-
-  echo "<select name = 'sel_pol' id = 'sel_pol' onchange = sel_polf(document.getElementById('sel_pol').value) >
+  echo "<select name = 'sel_pol' class='form-control input-sm' id = 'sel_pol' onchange = sel_polf(document.getElementById('sel_pol').value) >
   <script> 
   //Возвращаем значение области
   var sel1 = document.getElementById('sel_pol');
@@ -69,179 +95,87 @@ $rayon_id;
 mysqli_close($conn); 
 //Освобождаем память от результатов запроса
 mysqli_free_result($res0); ?>
-  
-  <script> 
+
+<script> 
 //Функция возвращает набор городов, в качестве входного параметра идет область
 	function sel_polf(a)
 	{
 		return $.ajax({type: 'POST',//Тип отправки данных
-            url: 'kl_reg.php',//Файл обработки
-			data:'id_pol='+a,//Номер области для ajax_db1.php
-            success: function (data)  {	 }});//Обновить данные во вкладке городов
+            url: 'sp_reg.php',//Файл обработки
+			data:'sel_pol='+a,//
+            success: function (data)  {	 }});
 	}	
 </script>
-    <br>
-    <label for='sel_tp_kl'><b>Тип клиента</b></label>
-    <br>
-     <?php 
-//Соединение к БД
-require "../conn.php";
-//Запрос на вывод городов
-$q_sel_rayon = "select * from tp_kl ";
-//Результат выполнения запроса
-$res0 = mysqli_query($conn, $q_sel_rayon);
-$rayon_id;
+	</div>
 
-  echo "<select name = 'sel_tp_kl' id = 'sel_tp_kl' onchange = sel_tpkl(document.getElementById('sel_tp_kl').value) >
-  <script> 
-  //Возвращаем значение области
-  var sel1 = document.getElementById('sel_tp_kl');
-  //Создаем элемент списка
-    var opt1 = document.createElement('option');
-  //Новое значение равное нулю и надпись 'Не выбрано'
-    opt1.value = 0;	opt1.text = 'Не выбрано';
-  //Добавляем в существующий объект новый элемент option в самом его начале
-    sel1.add(opt1, sel1.options[0]);
-  </script>";
-  //Цикл перебора значений для отображения остальных элементов
-  while($row = mysqli_fetch_array($res0))
-  {//Добавление элементов
-    echo "<option value  =  $row[0]> $row[1] </option>";
-  }
-  echo "</select> &nbsp ";
-
-
-//Закрываем соединение
-mysqli_close($conn); 
-//Освобождаем память от результатов запроса
-mysqli_free_result($res0); ?>
-  
-  <script> 
-//Функция возвращает набор городов, в качестве входного параметра идет область
-	function sel_tpkl(a)
-	{
-		return $.ajax({type: 'POST',//Тип отправки данных
-            url: 'kl_reg.php',//Файл обработки
-			data:'id_tpkl='+a,//Номер области для ajax_db1.php
-            success: function (data)  {	 }});//Обновить данные во вкладке городов
-	}	
-</script>
-    <br>
-    <label for='sel_rayon'><b>Район </b></label>
-    <br>
-    <!-- <select name='sel_rayon' id='sel_rayon' onchange = sel_gorod(document.getElementById(sel_rayon).value)> -->
-    <?php 
-//Соединение к БД
-require "../conn.php";
-//Запрос на вывод городов
-$q_sel_rayon = "select * from rayon ";
-//Результат выполнения запроса
-$res0 = mysqli_query($conn, $q_sel_rayon);
-$rayon_id;
+  <div class="form-group col-md-3 col-sm-3">
+	    <label for="photo">Фото*</label>
+	    <input type="file" id="photo" name="photo">
+	    <p class="help-block">Пожалуйста, загрузите отдельную фотографию. Групповое фото не допускается.</p>
+	</div>
 
 
 
-  echo "<select name = 'sel_rayon' id = 'sel_rayon' onchange = sel_rayon1(document.getElementById('sel_rayon').value) >
-  <script> 
-  //Возвращаем значение области
-  var sel1 = document.getElementById('sel_rayon');
-  //Создаем элемент списка
-    var opt1 = document.createElement('option');
-  //Новое значение равное нулю и надпись 'Не выбрано'
-    opt1.value = 0;	opt1.text = 'Не выбрано';
-  //Добавляем в существующий объект новый элемент option в самом его начале
-    sel1.add(opt1, sel1.options[0]);
-  </script>";
-  //Цикл перебора значений для отображения остальных элементов
-  while($row = mysqli_fetch_array($res0))
-  {//Добавление элементов
-    echo "<option value  =  $row[0]> $row[1] </option>";
-  }
-  echo "</select> &nbsp ";
+<div class="form-group col-md-6 col-sm-6">
+            <label for="city">Email*</label>
+            <input type="email" class="form-control input-sm" id="log" name="log" placeholder="">
+        </div>
+	
+	<div class="form-group col-md-6 col-sm-6">
+            <label for="state">Пароль*</label>
+            <input type="text" class="form-control input-sm" id="psw" name="psw" placeholder="">
+        </div>
+
+        <div class="col-md-12 col-sm-12">
+	<div class="form-group col-md-3 col-sm-3 pull-right" >
+			<button type="submit" class="btn btn-primary"  id="b1"> Подверждать</button>
+	</div>
+</div>         
+</div> 
+</div>
+</body>
+<script>
+$(document).ready(function(){
+  $('#b1').click(function () {
+    $.ajax({
+      type:'POST',
+								url: 'kl_reg.php',
+								data:
+								'fam='+document.getElementById('fam').value  +
+								'&imya='+document.getElementById('imya').value  +
+                '&otch='+document.getElementById('otch').value  +
+                '&tel='+document.getElementById('tel').value  +
+								'&passport='+document.getElementById('passport').value  +
+                '&adress='+document.getElementById('adress').value  +
+                '&sel_pol='+document.getElementById('sel_pol').value  +
+                //'&photo='+document.getElementById('photo').value  +
+								'&log='+document.getElementById('log').value  +
+								'&psw='+document.getElementById('psw').value,
+      
+								success: function (data){
+                //  alert(data);
+                  // alert('work')
+								//Если какая-либо запись пустая, то вывести что просит echo в reg.php  
+										// if(data.length != 0) {alert(data);}
+								//Иначе reg.php полностью отработает и перенаправит пользователя в свой кабинет
+											// else 
+                      { 
+											 $.ajax({   
+												type:'POST',
+												url: 'kl_log.php',
+												data:
+												//отправка с сохранением значения полей
+												'log='+document.getElementById('log').value  +
+												'&psw='+document.getElementById('psw').value,
+												//переадресация на страницу пользователя
+												success: function (data){location = 'profile.php';}
+												});
+                      }
+                  }});
+             })});
 
 
-//Закрываем соединение
-mysqli_close($conn); 
-//Освобождаем память от результатов запроса
-mysqli_free_result($res0); ?>
-  
-  <script> 
-//Функция возвращает набор городов, в качестве входного параметра идет область
-	function sel_rayon1(a)
-	{
-		return $.ajax({type: 'POST',//Тип отправки данных
-            url: 'kl_reg.php',//Файл обработки
-			data:'id_rayon='+a,//Номер области для ajax_db1.php
-            success: function (data)  {	 }});//Обновить данные во вкладке городов
-	}	
-</script>
-    
-    <br>
-    <label for='sel_natio'><b>Нациoнальность</b></label>
-    <br>
- 
-    <?php 
-//Соединение к БД
-require "../conn.php";
-//Запрос на вывод городов
-$q_sel_natio = "select * from nationality ";
-//Результат выполнения запроса
-$res0 = mysqli_query($conn, $q_sel_natio);
-$natio_id;
-//Перебор значений уже полученных от запроса
-echo "<select name = 'sel_natio' id = 'sel_natio' onchange = sel_natiof(document.getElementById('sel_natio').value) >
-<script> 
-//Возвращаем значение области
-var sel1 = document.getElementById('sel_natio');
-//Создаем элемент списка
-  var opt1 = document.createElement('option');
-//Новое значение равное нулю и надпись 'Не выбрано'
-  opt1.value = 0;	opt1.text = 'Не выбрано';
-//Добавляем в существующий объект новый элемент option в самом его начале
-  sel1.add(opt1, sel1.options[0]);
-</script>";
-
-while($row = mysqli_fetch_array($res0))
-{//Добавление элементов
-  echo "<option value  =  $row[0]> $row[1] </option>";
-}
-echo "</select> &nbsp ";
+  </script>
+</html>
 
 
-//Закрываем соединение
-mysqli_close($conn); 
-//Освобождаем память от результатов запроса
-mysqli_free_result($res0); ?>
-
-<script> 
-//Функция возвращает набор городов, в качестве входного параметра идет область
-function sel_natiof(a)
-{
-  return $.ajax({type: 'POST',//Тип отправки данных
-          url: 'kl_reg.php',//Файл обработки
-    data:'sel_natio='+a,//Номер области для ajax_db1.php
-          success: function (data)  { }});//Обновить данные во вкладке городов
-}	
-</script> 
-  
-    </select>
-    <br>
-
-    <label for="email"><b>Номер паспорта</b></label>
-    <input type="text" placeholder="Введите номер паспорта" name="pas_num" id="pass_num" required>
-
-    <label for="psw-repeat"><b>Логин</b></label>
-    <input type="text" placeholder="Введите логин" name="log" id="log" required>
-
-    <label for="psw"><b>Пароль</b></label>
-    <input type="password" placeholder="Введите пароль" name="psw" id="psw" required>
-
-    <hr>
-    <input type = "submit" class="registerbtn" name = "reg_kl" value = "Зарегистрировать">
-    <!-- <button type="submit" class="registerbtn">Регистрация</button> -->
-  </div>
-
-  <div class="container signin">
-    <p> <a href="kl_log_form.php">Войти</a></p>
-  </div>
-</form>

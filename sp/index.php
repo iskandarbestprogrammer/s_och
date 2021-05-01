@@ -85,8 +85,6 @@ margin-right:30px;
 <!-- 222 -->
 <div class="col-lg-6">
 <h1 style="text-align:center" >Мой Профиль</h1>
-
-
 	<?php
     require "../conn.php";
 		$idsp_org=$_SESSION['id_sp'];
@@ -100,11 +98,11 @@ margin-right:30px;
          <div class=""><ul><li><span>Фамилия: </span><?php echo $row["fam"]; ?></li>
           <li><span>Имя: </span><?php echo $row["imya"]; ?></li> 
            <li><span>Отчества: </span><?php echo $row["otch"]; ?></li>
-        <li><span>Отделение: </span><?php echo $row["otdel_id_otdel"]; ?></li>
-          <li><span>Кабинет: </span><?php echo $row["kab"]; ?></li> 
-           <li><span>Пасспорт: </span><?php echo $row["passport_"]; ?></li>
+        <!-- <li><span>Отделение: </span><?php echo $row["kab"]; ?></li> -->
+          <li><span>Пасспорт: </span><?php echo $row["passport_"]; ?></li> 
            <li><span>Должность: </span><?php echo $row["doljnost"]; ?></li>
            <li><span>Дата регистрации: </span><?php echo $row["reg_date"]; ?></li>
+           <li><span>Кабинет: </span><?php echo $row["kab"]; ?></li>
            <a href="upd_sp.php?id_sp=<?php echo $row["id_sp"]; ?>"  class="btn btn-success"> Редактировать</a>
            </ul>
         

@@ -1,7 +1,8 @@
 <?php
 // include 'menu.php';
 session_start();
-include 'conn.php';
+include '../conn.php';
+/*
 if(count($_POST)>0) {
 mysqli_query($conn,"UPDATE  org  set  id_org='" . $_POST['id_org'] . "',org='" . $_POST['org'] . "', tel='" . $_POST['tel'] . "', 
 address_='" . $_POST['address_'] . "', vremya_raboty_nach='" . $_POST['vremya_raboty_nach'] . "',
@@ -10,11 +11,18 @@ WHERE id_org='" . $_POST['id_org'] . "'") ;
 
 $message = "Record Modified Successfully";
  header("Location: org_list.php");
-}
+}*/
 // else {
 //     echo "<script <script type='text/javascript'> alert('Eror') </script>";
 // }
+
+echo $_POST['b1'];
+if($_SESSION['id_sel_org']){$result = mysqli_query($conn,"SELECT * FROM org WHERE id_org=$_SESSION[id_sel_org]");
+}
+else
+{
 $result = mysqli_query($conn,"SELECT * FROM org WHERE id_org='" . $_GET['id_org'] . "'");
+}
 $row= mysqli_fetch_array($result);
 ?>
 <html>

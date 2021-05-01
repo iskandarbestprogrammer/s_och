@@ -1,5 +1,5 @@
 <?php 
- require "conn.php";
+ require "../conn.php";
 
  //Запрос на вывод городов
 $q_sel_gorod = "select ochered.vremya_priema ,sp.id_sp,sp.imya from ochered join sp on sp.id_sp=ochered.sp_id_sp

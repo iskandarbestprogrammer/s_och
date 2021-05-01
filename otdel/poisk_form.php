@@ -70,16 +70,10 @@ body {font-family: Arial, Helvetica, sans-serif;}
     <div class="content" name="content" id="content"></div>
 </div>
  <div class="col-lg-6">
- <h1>Поиск организации</h1>
-<lablel>Название организации</lablel>
+ <h1>Поиск отделение</h1>
+<lablel>Название отделение</lablel>
 <br>
-<input type="text" name="org" id="org" placeholder="Введите название организации">
-<br><br>
-<label>Номер телефона</label><br>
-<input type="text" name="nomer" id="nomer" placeholder="Введите номер телефона">
-<br><br>
-<label>ИНН номер</label><br>
-<input type="text" name="innnomer" id="innnomer" placeholder="ИНН номер">
+<input type="text" name="otdel" id="otdel" placeholder="Введите название организации">
 <br><br>
 <button id="poisk">Поиск</button>
  </div>   
@@ -91,18 +85,28 @@ body {font-family: Arial, Helvetica, sans-serif;}
 <script>
 $(document).ready(function(){
   $('#poisk').click(function () {
+    // if (getElementById('otdel').value==0) {
+    //   alert("Пустое значение");
+    // }
     $.ajax({
       type:'POST',
 								url: 'poisk.php',
 								data:
-								'org='+document.getElementById('org').value  +
-								'&nomer='+document.getElementById('nomer').value +
-                '&innnomer='+document.getElementById('innnomer').value ,
+								'otdel='+document.getElementById('otdel').value,
 								success: function (data){
-										if(data.length != 0) {alert(data);
+                  if (data==0) {
+                    alert('Пустой значение')
+                  }else{
+                    if(data.length != 0) {
                                             $('#content').html(data);
                                         }
+                                        else{
+                                          alert("Такой не существует")
+                                        }
 							
+                  }
+                  
+										
 							
                   }});
              })});
